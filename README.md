@@ -36,7 +36,22 @@ This package creates a widget, so use it as you would any other widget, but pref
 screen estate available as possible.
 
 ```dart
-ColorSchemeDisplay(colorScheme: colorScheme);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = ColorScheme.fromSeed(seedColor: const Color(0xFF2FB2B2), brightness: Brightness.light, dynamicSchemeVariant: DynamicSchemeVariant.tonalSpot);
+    return MaterialApp(
+      title: 'Color Scheme Display Demo',
+      theme: ThemeData(
+        colorScheme: colorScheme,
+        useMaterial3: true,
+      ),
+      home: const ColorSchemeDisplay(),
+    );
+  }
+}
 ```
 
 ## Additional information
