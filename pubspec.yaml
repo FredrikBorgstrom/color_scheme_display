@@ -1,7 +1,8 @@
 name: color_scheme_display
-description: "A new Flutter package project."
+description: "A simple widget that displays all colors and names of a given color scheme."
 version: 0.0.1
-homepage:
+homepage: https://abcx3.com
+repository: https://github.com/FredrikBorgstrom/color_scheme_display
 
 environment:
   sdk: ^3.5.0
