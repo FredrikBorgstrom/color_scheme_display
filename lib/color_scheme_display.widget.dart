@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 
 class ColorSchemeDisplay extends StatelessWidget {
-  final ColorScheme colorScheme;
+  final ColorScheme? colorScheme;
   final Color? backgroundColor;
   final Color? textColor;
   final swatchWidth = 40.0;
 
-  const ColorSchemeDisplay(
-      {required this.colorScheme,
-      this.backgroundColor,
-      this.textColor,
-      super.key});
+  const ColorSchemeDisplay({
+    this.colorScheme,
+    this.backgroundColor,
+    this.textColor,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final colors = defineColors();
-
     final theme = Theme.of(context);
+    final scheme = colorScheme ?? theme.colorScheme;
+    final colors = defineColors(scheme);
 
     final colorEntries = colors.entries.toList();
     final halfLength = (colorEntries.length / 2).ceil();
@@ -28,13 +29,13 @@ class ColorSchemeDisplay extends StatelessWidget {
         width: mediaQuery.size.width,
         height: mediaQuery.size.height,
         padding: const EdgeInsets.all(8),
-        color: backgroundColor ?? colorScheme.surface,
+        color: backgroundColor ?? scheme.surface,
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('brightness: ${colorScheme.brightness}',
+                Text('brightness: ${scheme.brightness}',
                     style: theme.textTheme.titleMedium),
               ],
             ),
@@ -43,10 +44,10 @@ class ColorSchemeDisplay extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: renderColumn(colorEntries.sublist(0, halfLength)),
+                    child: _renderColumn(colorEntries.sublist(0, halfLength), scheme),
                   ),
                   Expanded(
-                    child: renderColumn(colorEntries.sublist(halfLength)),
+                    child: _renderColumn(colorEntries.sublist(halfLength), scheme),
                   ),
                 ],
               ),
@@ -57,7 +58,7 @@ class ColorSchemeDisplay extends StatelessWidget {
     );
   }
 
-  renderColumn(List<MapEntry<String, Color>> colorEntries) {
+  _renderColumn(List<MapEntry<String, Color>> colorEntries, ColorScheme scheme) {
     return Column(
       children: colorEntries.map((entry) {
         return Expanded(
@@ -72,7 +73,7 @@ class ColorSchemeDisplay extends StatelessWidget {
                 child: Text(entry.key,
                     style: TextStyle(
                       fontSize: 12,
-                      color: textColor ?? colorScheme.onSurface,
+                      color: textColor ?? scheme.onSurface,
                     )),
               ),
             ],
@@ -82,52 +83,52 @@ class ColorSchemeDisplay extends StatelessWidget {
     );
   }
 
-  Map<String, Color> defineColors() => {
-        'primary': colorScheme.primary,
-        'onPrimary': colorScheme.onPrimary,
-        'primaryContainer': colorScheme.primaryContainer,
-        'onPrimaryContainer': colorScheme.onPrimaryContainer,
-        'primaryFixed': colorScheme.primaryFixed,
-        'primaryFixedDim': colorScheme.primaryFixedDim,
-        'onPrimaryFixed': colorScheme.onPrimaryFixed,
-        'onPrimaryFixedVariant': colorScheme.onPrimaryFixedVariant,
-        'secondary': colorScheme.secondary,
-        'onSecondary': colorScheme.onSecondary,
-        'secondaryContainer': colorScheme.secondaryContainer,
-        'onSecondaryContainer': colorScheme.onSecondaryContainer,
-        'secondaryFixed': colorScheme.secondaryFixed,
-        'secondaryFixedDim': colorScheme.secondaryFixedDim,
-        'onSecondaryFixed': colorScheme.onSecondaryFixed,
-        'onSecondaryFixedVariant': colorScheme.onSecondaryFixedVariant,
-        'tertiary': colorScheme.tertiary,
-        'onTertiary': colorScheme.onTertiary,
-        'tertiaryContainer': colorScheme.tertiaryContainer,
-        'onTertiaryContainer': colorScheme.onTertiaryContainer,
-        'tertiaryFixed': colorScheme.tertiaryFixed,
-        'tertiaryFixedDim': colorScheme.tertiaryFixedDim,
-        'onTertiaryFixed': colorScheme.onTertiaryFixed,
-        'onTertiaryFixedVariant': colorScheme.onTertiaryFixedVariant,
-        'error': colorScheme.error,
-        'onError': colorScheme.onError,
-        'errorContainer': colorScheme.errorContainer,
-        'onErrorContainer': colorScheme.onErrorContainer,
-        'surface': colorScheme.surface,
-        'onSurface': colorScheme.onSurface,
-        'surfaceDim': colorScheme.surfaceDim,
-        'surfaceBright': colorScheme.surfaceBright,
-        'surfaceContainerLowest': colorScheme.surfaceContainerLowest,
-        'surfaceContainerLow': colorScheme.surfaceContainerLow,
-        'surfaceContainer': colorScheme.surfaceContainer,
-        'surfaceContainerHigh': colorScheme.surfaceContainerHigh,
-        'surfaceContainerHighest': colorScheme.surfaceContainerHighest,
-        'onSurfaceVariant': colorScheme.onSurfaceVariant,
-        'outline': colorScheme.outline,
-        'outlineVariant': colorScheme.outlineVariant,
-        'shadow': colorScheme.shadow,
-        'scrim': colorScheme.scrim,
-        'inverseSurface': colorScheme.inverseSurface,
-        'onInverseSurface': colorScheme.onInverseSurface,
-        'inversePrimary': colorScheme.inversePrimary,
-        'surfaceTint': colorScheme.surfaceTint,
+  Map<String, Color> defineColors(ColorScheme scheme) => {
+        'primary': scheme.primary,
+        'onPrimary': scheme.onPrimary,
+        'primaryContainer': scheme.primaryContainer,
+        'onPrimaryContainer': scheme.onPrimaryContainer,
+        'primaryFixed': scheme.primaryFixed,
+        'primaryFixedDim': scheme.primaryFixedDim,
+        'onPrimaryFixed': scheme.onPrimaryFixed,
+        'onPrimaryFixedVariant': scheme.onPrimaryFixedVariant,
+        'secondary': scheme.secondary,
+        'onSecondary': scheme.onSecondary,
+        'secondaryContainer': scheme.secondaryContainer,
+        'onSecondaryContainer': scheme.onSecondaryContainer,
+        'secondaryFixed': scheme.secondaryFixed,
+        'secondaryFixedDim': scheme.secondaryFixedDim,
+        'onSecondaryFixed': scheme.onSecondaryFixed,
+        'onSecondaryFixedVariant': scheme.onSecondaryFixedVariant,
+        'tertiary': scheme.tertiary,
+        'onTertiary': scheme.onTertiary,
+        'tertiaryContainer': scheme.tertiaryContainer,
+        'onTertiaryContainer': scheme.onTertiaryContainer,
+        'tertiaryFixed': scheme.tertiaryFixed,
+        'tertiaryFixedDim': scheme.tertiaryFixedDim,
+        'onTertiaryFixed': scheme.onTertiaryFixed,
+        'onTertiaryFixedVariant': scheme.onTertiaryFixedVariant,
+        'error': scheme.error,
+        'onError': scheme.onError,
+        'errorContainer': scheme.errorContainer,
+        'onErrorContainer': scheme.onErrorContainer,
+        'surface': scheme.surface,
+        'onSurface': scheme.onSurface,
+        'surfaceDim': scheme.surfaceDim,
+        'surfaceBright': scheme.surfaceBright,
+        'surfaceContainerLowest': scheme.surfaceContainerLowest,
+        'surfaceContainerLow': scheme.surfaceContainerLow,
+        'surfaceContainer': scheme.surfaceContainer,
+        'surfaceContainerHigh': scheme.surfaceContainerHigh,
+        'surfaceContainerHighest': scheme.surfaceContainerHighest,
+        'onSurfaceVariant': scheme.onSurfaceVariant,
+        'outline': scheme.outline,
+        'outlineVariant': scheme.outlineVariant,
+        'shadow': scheme.shadow,
+        'scrim': scheme.scrim,
+        'inverseSurface': scheme.inverseSurface,
+        'onInverseSurface': scheme.onInverseSurface,
+        'inversePrimary': scheme.inversePrimary,
+        'surfaceTint': scheme.surfaceTint,
       };
 }

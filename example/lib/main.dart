@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // TRY THIS: Try changing the colorScheme here to a different colorScheme
     final colorScheme = ColorScheme.fromSeed(seedColor: const Color(0xFF2FB2B2), brightness: Brightness.light, dynamicSchemeVariant: DynamicSchemeVariant.tonalSpot);
     return MaterialApp(
       title: 'Color Scheme Display Demo',
