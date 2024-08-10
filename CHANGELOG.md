@@ -10,3 +10,6 @@
 
 * Added code documentation.
 
+## 0.0.4
+
+* formatted code.
