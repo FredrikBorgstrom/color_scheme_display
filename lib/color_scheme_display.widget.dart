@@ -80,10 +80,21 @@ class ColorSchemeDisplay extends StatelessWidget {
   /// Takes a list of [colorEntries] and the [scheme] to style the text.
   Widget _renderColumn(
       List<MapEntry<String, Color>> colorEntries, ColorScheme scheme) {
+    final textStyle = TextStyle(
+      fontSize: 12,
+      color: textColor ?? scheme.onSurface,
+    );
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: colorEntries.map((entry) {
+        final colorName = entry.key;
+        final colorHex =
+            entry.value.value.toRadixString(16).padLeft(8, '0').toUpperCase();
         return Expanded(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 width: swatchWidth,
@@ -91,11 +102,16 @@ class ColorSchemeDisplay extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: Text(entry.key,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: textColor ?? scheme.onSurface,
-                    )),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SelectableText(
+                      colorName,
+                      style: textStyle.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    SelectableText(colorHex, style: textStyle),
+                  ],
+                ),
               ),
             ],
           ),

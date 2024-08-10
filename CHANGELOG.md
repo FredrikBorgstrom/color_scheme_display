@@ -21,3 +21,8 @@
 ## 0.0.6
 
 * Explain how to use the package more detail in README.md
+
+## 0.0.7
+
+* Added hex code to color display
+* Both the color name and the hex code can now be copied but double tapping them and selecting 'copy'.

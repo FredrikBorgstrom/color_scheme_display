@@ -23,7 +23,8 @@ I created this package for two purposes:
 
 ## Features
 
-* Displays all the colors of a given color scheme as well as the color's name.
+* Displays all the colors of a given color scheme as well as the color's name and its hex code.
+* You can double-tap on the color names or hex codes to copy their values.
 * If no color scheme is provided, it will use the default color scheme of the current theme.
 * Scales and uses as much screen estate as possible.
 * Background and text colors can be set, but will default to `surface` and `onSurface` respectively.
