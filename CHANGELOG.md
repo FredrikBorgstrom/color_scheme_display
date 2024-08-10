@@ -31,3 +31,7 @@
 
 * Added switch to toggle hex codes on and off.
 * Widget is now rendered inside safe area.
+
+## 1.0.1
+
+* Updated readme with minor change
