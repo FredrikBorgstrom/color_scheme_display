@@ -73,3 +73,5 @@ me through my web site at [abcx3.com](https://abcx3.com), or you can submit an i
 The package is open source and contributions are welcome.
 
 ## Issues and feedback
+
+Please file [issues](https://github.com/FredrikBorgstrom/color_scheme_display/issues) to send feedback or report a bug. Thank you!
