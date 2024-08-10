@@ -13,3 +13,7 @@
 ## 0.0.4
 
 * formatted code.
+
+## 0.0.5
+
+* Added topics to pubspec.yaml
