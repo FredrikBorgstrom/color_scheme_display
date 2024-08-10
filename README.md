@@ -13,7 +13,9 @@ and the Flutter guide for
 
 A simple widget that displays all colors and names of a given color scheme.
 
-![Screenshot_1723225960](screenshots/Screenshot_1723309308.png) ![Screenshot_1723226350](screenshots/Screenshot_1723309312.png)
+| ColorSchemeDisplay() screenshot                                              | ColorSchemeDisplay() screenshot with hex code                             |
+|------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| ![Widget screenshot without hex code](screenshots/Screenshot_1723309308.png) | ![Widget screenshot with hex code](screenshots/Screenshot_1723309312.png) |
 
 ## Background
 

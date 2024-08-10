@@ -35,3 +35,7 @@
 ## 1.0.1
 
 * Updated readme with minor change
+
+## 1.0.2
+
+* Updated readme with screenshots side by side
