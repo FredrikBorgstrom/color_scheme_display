@@ -1,6 +1,3 @@
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:color_scheme_display/color_scheme_display.dart';
 
 void main() {
   /*test('adds one to input values', () {

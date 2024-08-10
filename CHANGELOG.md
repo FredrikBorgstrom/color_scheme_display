@@ -6,3 +6,7 @@
 
 * Added screenshots to README.md.
 
+## 0.0.3
+
+* Added code documentation.
+

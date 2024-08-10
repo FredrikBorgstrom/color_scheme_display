@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays a color scheme with color swatches and their names.
+///
+/// This widget takes a [ColorScheme] and displays all the colors defined in
+/// the scheme as rectangles filled with those colors, along with the names
+/// of those colors. The colors are displayed in two columns.
 class ColorSchemeDisplay extends StatelessWidget {
+  /// The color scheme to display.
   final ColorScheme? colorScheme;
+
+  /// The background color of the widget.
   final Color? backgroundColor;
+
+  /// The text color for the color names.
   final Color? textColor;
+
+  /// The width of each color swatch.
   final swatchWidth = 40.0;
 
+  /// Creates a [ColorSchemeDisplay] widget.
+  ///
+  /// The [colorScheme], [backgroundColor], and [textColor] are optional.
   const ColorSchemeDisplay({
     this.colorScheme,
     this.backgroundColor,
@@ -17,7 +32,7 @@ class ColorSchemeDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scheme = colorScheme ?? theme.colorScheme;
-    final colors = defineColors(scheme);
+    final colors = _defineColors(scheme);
 
     final colorEntries = colors.entries.toList();
     final halfLength = (colorEntries.length / 2).ceil();
@@ -58,7 +73,10 @@ class ColorSchemeDisplay extends StatelessWidget {
     );
   }
 
-  _renderColumn(List<MapEntry<String, Color>> colorEntries, ColorScheme scheme) {
+  /// Renders a column of color swatches and their names.
+  ///
+  /// Takes a list of [colorEntries] and the [scheme] to style the text.
+  Widget _renderColumn(List<MapEntry<String, Color>> colorEntries, ColorScheme scheme) {
     return Column(
       children: colorEntries.map((entry) {
         return Expanded(
@@ -83,52 +101,55 @@ class ColorSchemeDisplay extends StatelessWidget {
     );
   }
 
-  Map<String, Color> defineColors(ColorScheme scheme) => {
-        'primary': scheme.primary,
-        'onPrimary': scheme.onPrimary,
-        'primaryContainer': scheme.primaryContainer,
-        'onPrimaryContainer': scheme.onPrimaryContainer,
-        'primaryFixed': scheme.primaryFixed,
-        'primaryFixedDim': scheme.primaryFixedDim,
-        'onPrimaryFixed': scheme.onPrimaryFixed,
-        'onPrimaryFixedVariant': scheme.onPrimaryFixedVariant,
-        'secondary': scheme.secondary,
-        'onSecondary': scheme.onSecondary,
-        'secondaryContainer': scheme.secondaryContainer,
-        'onSecondaryContainer': scheme.onSecondaryContainer,
-        'secondaryFixed': scheme.secondaryFixed,
-        'secondaryFixedDim': scheme.secondaryFixedDim,
-        'onSecondaryFixed': scheme.onSecondaryFixed,
-        'onSecondaryFixedVariant': scheme.onSecondaryFixedVariant,
-        'tertiary': scheme.tertiary,
-        'onTertiary': scheme.onTertiary,
-        'tertiaryContainer': scheme.tertiaryContainer,
-        'onTertiaryContainer': scheme.onTertiaryContainer,
-        'tertiaryFixed': scheme.tertiaryFixed,
-        'tertiaryFixedDim': scheme.tertiaryFixedDim,
-        'onTertiaryFixed': scheme.onTertiaryFixed,
-        'onTertiaryFixedVariant': scheme.onTertiaryFixedVariant,
-        'error': scheme.error,
-        'onError': scheme.onError,
-        'errorContainer': scheme.errorContainer,
-        'onErrorContainer': scheme.onErrorContainer,
-        'surface': scheme.surface,
-        'onSurface': scheme.onSurface,
-        'surfaceDim': scheme.surfaceDim,
-        'surfaceBright': scheme.surfaceBright,
-        'surfaceContainerLowest': scheme.surfaceContainerLowest,
-        'surfaceContainerLow': scheme.surfaceContainerLow,
-        'surfaceContainer': scheme.surfaceContainer,
-        'surfaceContainerHigh': scheme.surfaceContainerHigh,
-        'surfaceContainerHighest': scheme.surfaceContainerHighest,
-        'onSurfaceVariant': scheme.onSurfaceVariant,
-        'outline': scheme.outline,
-        'outlineVariant': scheme.outlineVariant,
-        'shadow': scheme.shadow,
-        'scrim': scheme.scrim,
-        'inverseSurface': scheme.inverseSurface,
-        'onInverseSurface': scheme.onInverseSurface,
-        'inversePrimary': scheme.inversePrimary,
-        'surfaceTint': scheme.surfaceTint,
-      };
+  /// Defines the colors to be displayed from the given [scheme].
+  ///
+  /// Returns a map of color names to their corresponding [Color] values.
+  Map<String, Color> _defineColors(ColorScheme scheme) => {
+    'primary': scheme.primary,
+    'onPrimary': scheme.onPrimary,
+    'primaryContainer': scheme.primaryContainer,
+    'onPrimaryContainer': scheme.onPrimaryContainer,
+    'primaryFixed': scheme.primaryFixed,
+    'primaryFixedDim': scheme.primaryFixedDim,
+    'onPrimaryFixed': scheme.onPrimaryFixed,
+    'onPrimaryFixedVariant': scheme.onPrimaryFixedVariant,
+    'secondary': scheme.secondary,
+    'onSecondary': scheme.onSecondary,
+    'secondaryContainer': scheme.secondaryContainer,
+    'onSecondaryContainer': scheme.onSecondaryContainer,
+    'secondaryFixed': scheme.secondaryFixed,
+    'secondaryFixedDim': scheme.secondaryFixedDim,
+    'onSecondaryFixed': scheme.onSecondaryFixed,
+    'onSecondaryFixedVariant': scheme.onSecondaryFixedVariant,
+    'tertiary': scheme.tertiary,
+    'onTertiary': scheme.onTertiary,
+    'tertiaryContainer': scheme.tertiaryContainer,
+    'onTertiaryContainer': scheme.onTertiaryContainer,
+    'tertiaryFixed': scheme.tertiaryFixed,
+    'tertiaryFixedDim': scheme.tertiaryFixedDim,
+    'onTertiaryFixed': scheme.onTertiaryFixed,
+    'onTertiaryFixedVariant': scheme.onTertiaryFixedVariant,
+    'error': scheme.error,
+    'onError': scheme.onError,
+    'errorContainer': scheme.errorContainer,
+    'onErrorContainer': scheme.onErrorContainer,
+    'surface': scheme.surface,
+    'onSurface': scheme.onSurface,
+    'surfaceDim': scheme.surfaceDim,
+    'surfaceBright': scheme.surfaceBright,
+    'surfaceContainerLowest': scheme.surfaceContainerLowest,
+    'surfaceContainerLow': scheme.surfaceContainerLow,
+    'surfaceContainer': scheme.surfaceContainer,
+    'surfaceContainerHigh': scheme.surfaceContainerHigh,
+    'surfaceContainerHighest': scheme.surfaceContainerHighest,
+    'onSurfaceVariant': scheme.onSurfaceVariant,
+    'outline': scheme.outline,
+    'outlineVariant': scheme.outlineVariant,
+    'shadow': scheme.shadow,
+    'scrim': scheme.scrim,
+    'inverseSurface': scheme.inverseSurface,
+    'onInverseSurface': scheme.onInverseSurface,
+    'inversePrimary': scheme.inversePrimary,
+    'surfaceTint': scheme.surfaceTint,
+  };
 }
