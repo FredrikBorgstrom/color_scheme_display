@@ -17,3 +17,7 @@
 ## 0.0.5
 
 * Added topics to pubspec.yaml
+
+## 0.0.6
+
+* Explain how to use the package more detail in README.md
