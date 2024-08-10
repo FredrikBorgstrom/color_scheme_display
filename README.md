@@ -13,7 +13,7 @@ and the Flutter guide for
 
 A simple widget that displays all colors and names of a given color scheme.
 
-![Screenshot_1723225960](https://github.com/user-attachments/assets/c32569d9-028a-44dd-a8cb-43a1ce7e1c12) ![Screenshot_1723226350](https://github.com/user-attachments/assets/42010a2f-88ac-4ce6-81d4-52cf87ab9317)
+![Screenshot_1723225960](screenshots/Screenshot_1723309308.png) ![Screenshot_1723226350](screenshots/Screenshot_1723309312.png)
 
 ## Background
 

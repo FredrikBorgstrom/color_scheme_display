@@ -26,3 +26,8 @@
 
 * Added hex code to color display
 * Both the color name and the hex code can now be copied but double tapping them and selecting 'copy'.
+
+## 1.0.0
+
+* Added switch to toggle hex codes on and off.
+* Widget is now rendered inside safe area.

@@ -1,11 +1,14 @@
 name: color_scheme_display
 description: "A simple widget that displays all colors and names of a given color scheme."
-version: 0.0.7
+version: 1.0.0
 homepage: https://abcx3.com
 repository: https://github.com/FredrikBorgstrom/color_scheme_display
 topics: [flutter, widget, material, color, debug]
-
-
+screenshots:
+  - description: "A screenshot of the widget displaying the colors of a color scheme seeded with Color(0xFF2FB2B2)"
+    path: screenshots/Screenshot_1723309308.png
+  - description: "A screenshot of the widget displaying the colors of a color scheme seeded with Color(0xFF2FB2B2) with hex codes shown"
+    path: screenshots/Screenshot_1723309312.png
 environment:
   sdk: ^3.5.0
   flutter: ">=1.17.0"

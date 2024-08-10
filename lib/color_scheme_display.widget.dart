@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// This widget takes a [ColorScheme] and displays all the colors defined in
 /// the scheme as rectangles filled with those colors, along with the names
 /// of those colors. The colors are displayed in two columns.
-class ColorSchemeDisplay extends StatelessWidget {
+class ColorSchemeDisplay extends StatefulWidget {
   /// The color scheme to display.
   final ColorScheme? colorScheme;
 
@@ -14,9 +14,6 @@ class ColorSchemeDisplay extends StatelessWidget {
 
   /// The text color for the color names.
   final Color? textColor;
-
-  /// The width of each color swatch.
-  final swatchWidth = 40.0;
 
   /// Creates a [ColorSchemeDisplay] widget.
   ///
@@ -29,47 +26,73 @@ class ColorSchemeDisplay extends StatelessWidget {
   });
 
   @override
+  State<ColorSchemeDisplay> createState() => _ColorSchemeDisplayState();
+}
+
+class _ColorSchemeDisplayState extends State<ColorSchemeDisplay> {
+  /// The width of each color swatch.
+  final swatchWidth = 40.0;
+  bool showHexCodes = false;
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final scheme = colorScheme ?? theme.colorScheme;
+    final scheme = widget.colorScheme ?? theme.colorScheme;
     final colors = _defineColors(scheme);
 
     final colorEntries = colors.entries.toList();
     final halfLength = (colorEntries.length / 2).ceil();
 
-    final mediaQuery = MediaQuery.of(context);
-
     return Material(
-      child: Container(
-        width: mediaQuery.size.width,
-        height: mediaQuery.size.height,
-        padding: const EdgeInsets.all(8),
-        color: backgroundColor ?? scheme.surface,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('brightness: ${scheme.brightness}',
-                    style: theme.textTheme.titleMedium),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: _renderColumn(
-                        colorEntries.sublist(0, halfLength), scheme),
-                  ),
-                  Expanded(
-                    child:
-                        _renderColumn(colorEntries.sublist(halfLength), scheme),
-                  ),
-                ],
+      child: SafeArea(
+        child: Container(
+          color: widget.backgroundColor ?? scheme.surface,
+          child: Column(
+            children: [
+              SizedBox(
+                width: 400,
+                height: 40,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: Text('${scheme.brightness}',
+                          style: theme.textTheme.titleSmall),
+                    ),
+                    const Spacer(),
+                    Text(
+                      'show hex code',
+                      style: theme.textTheme.labelMedium,
+                    ),
+                    Flexible(
+                        fit: FlexFit.loose,
+                        child: Switch(
+                            value: showHexCodes,
+                            onChanged: (_) {
+                              setState(() => showHexCodes = !showHexCodes);
+                            })),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 8),
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _renderColumn(
+                          colorEntries.sublist(0, halfLength), scheme),
+                    ),
+                    Expanded(
+                      child: _renderColumn(
+                          colorEntries.sublist(halfLength), scheme),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -82,7 +105,7 @@ class ColorSchemeDisplay extends StatelessWidget {
       List<MapEntry<String, Color>> colorEntries, ColorScheme scheme) {
     final textStyle = TextStyle(
       fontSize: 12,
-      color: textColor ?? scheme.onSurface,
+      color: widget.textColor ?? scheme.onSurface,
     );
 
     return Column(
@@ -109,7 +132,8 @@ class ColorSchemeDisplay extends StatelessWidget {
                       colorName,
                       style: textStyle.copyWith(fontWeight: FontWeight.bold),
                     ),
-                    SelectableText(colorHex, style: textStyle),
+                    if (showHexCodes)
+                      SelectableText(colorHex, style: textStyle),
                   ],
                 ),
               ),
